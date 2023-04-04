@@ -1,6 +1,6 @@
+import 'react-native-gesture-handler';
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import FeatherIcon from 'react-native-vector-icons/Feather';
 
 import StackRoutes from './Stack';
 import FavoritesScreen from '../screens/FavoritesScreen';
