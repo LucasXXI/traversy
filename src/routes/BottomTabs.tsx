@@ -10,6 +10,11 @@ export type BottomTabParamList = {
   Favorites: undefined;
 };
 
+const tabIcons = {
+  Catalog: 'book',
+  Favorites: 'star',
+}
+
 const { Navigator, Screen } = createBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabRoutes = () => {

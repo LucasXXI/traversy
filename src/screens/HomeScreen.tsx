@@ -12,7 +12,18 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       <Text style={styles.text}>Home Screen</Text>
       <Button
         title="Select Location"
-        onPress={() => navigation.navigate('Location')}
+        onPress={() =>
+          navigation.navigate('Location', {
+            location: {
+              id: 1,
+              title: 'Location 1',
+              description: 'Description 1',
+              image: 'https://picsum.photos/200/300',
+              price: 100,
+            },
+            isFavorite: false,
+          })
+        }
       />
     </View>
   );
