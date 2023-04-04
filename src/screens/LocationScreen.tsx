@@ -10,14 +10,10 @@ type LocationScreenProps = NativeStackScreenProps<
 >;
 
 const LocationScreen = ({ navigation }: LocationScreenProps) => {
-  const goBack = () => {
-    navigation.goBack();
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Location Screen</Text>
-      <Button title="Go Back" onPress={goBack} />
+      <Button title="Go Back" onPress={() => navigation.goBack()} />
     </View>
   );
 };

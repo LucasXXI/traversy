@@ -7,14 +7,13 @@ import { RootStackParamList } from '../routes/Stack';
 type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
-  const selectLocation = () => {
-    navigation.navigate('Home');
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Home Screen</Text>
-      <Button title="Select Location" onPress={selectLocation} />
+      <Button
+        title="Select Location"
+        onPress={() => navigation.navigate('Location')}
+      />
     </View>
   );
 };
