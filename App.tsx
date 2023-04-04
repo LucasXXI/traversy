@@ -1,9 +1,14 @@
-//create a app component that renders routes
+import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import Routes from './routes';
+
+import BottomTabRoutes from './src/routes/BottomTabs';
 
 const App = () => {
-  return <Routes />
-}
+  return (
+    <NavigationContainer>
+      <BottomTabRoutes />
+    </NavigationContainer>
+  );
+};
 
 export default App;
