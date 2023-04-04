@@ -14,7 +14,11 @@ const { Navigator, Screen } = createBottomTabNavigator<BottomTabParamList>();
 const BottomTabRoutes = () => {
   return (
     <Navigator initialRouteName="Home">
-      <Screen name="Home" component={StackRoutes} />
+      <Screen
+        name="Home"
+        component={StackRoutes}
+        options={{ headerShown: false }}
+      />
       <Screen name="Favorites" component={FavoritesScreen} />
     </Navigator>
   );
