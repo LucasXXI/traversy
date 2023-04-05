@@ -13,9 +13,6 @@ const LocationItem = ({
   onToggleFavorite,
   onLocationPress,
 }: LocationItemProps) => {
-  location.imageUrl =
-    'https://upload.wikimedia.org/wikipedia/commons/4/47/Ver-oPeso-Belem.jpg';
-
   return (
     <List.Item
       onPress={() => onLocationPress(location.id)}

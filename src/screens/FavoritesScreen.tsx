@@ -1,7 +1,9 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { useMemo } from 'react';
-import { StyleSheet, View } from 'react-native';
-
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { StyleSheet, View } from 'react-native';
+import { Text } from 'react-native-paper';
+
 import LocationList from '../components/LocationList';
 import { FavoriteStackParamList } from '../routes/FavoriteStack';
 import { useLocations } from '../stores/locations';
@@ -29,17 +31,39 @@ const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
 
   return (
     <View style={styles.container}>
-      <LocationList
-        values={favoriteLocations}
-        onLocationPress={handleLocationPress}
-        onToggleFavorite={toggleFavorite}
-      />
+      {favoriteLocations.length === 0 ? (
+        <View style={styles.empty}>
+          <Text variant="titleLarge" style={{ marginBottom: 16 }}>
+            Sem localizações favoritas
+          </Text>
+          <Text
+            variant="labelLarge"
+            style={{ width: '80%', textAlign: 'center' }}
+          >
+            Adicione localizações favoritas para encontrá-las mais rápido
+          </Text>
+        </View>
+      ) : (
+        <LocationList
+          values={favoriteLocations}
+          onLocationPress={handleLocationPress}
+          onToggleFavorite={toggleFavorite}
+        />
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
+  empty: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '100%',
+  },
 });
 
 export default FavoritesScreen;
