@@ -1,53 +1,56 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import { Text, TouchableRipple } from 'react-native-paper';
+import { FlatList, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Text } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-
-import { HomeStackParamList } from '../routes/HomeStack';
 import { locations } from '../assets/locations';
-import { FavoriteStackParamList } from '../routes/FavoriteStack';
+import { HomeStackParamList } from '../routes/HomeStack';
 
 type HomeScreenProps = NativeStackScreenProps<HomeStackParamList, 'Home'>;
 
-const HomeScreen = ({ navigation, route }: HomeScreenProps) => {
-  const AverageRating = (rating: number[]) => { 
-    const avg = rating.reduce((acc, cur) => acc+ cur)/5
+const HomeScreen = ({ navigation }: HomeScreenProps) => {
+  const AverageRating = (rating: number[]) => {
+    const avg = rating.reduce((acc, cur) => acc + cur) / 5;
     return avg.toFixed(1);
-  } 
-
+  };
 
   return (
     <View style={styles.container}>
       <FlatList
         data={locations}
-        keyExtractor={ item => String(item.id) }
+        keyExtractor={(item) => String(item.id)}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() =>
-              navigation.navigate(
-                'Location', {
+              navigation.navigate('Location', {
                 location: item,
-                isFavorite: false
-              })}
-              style={styles.LocationCard}
-              >
+                isFavorite: false,
+              })
+            }
+            style={styles.LocationCard}
+          >
             <Text style={styles.LocationTitle}>{item.name}</Text>
             <Text style={styles.LocationNeighborhood}>{item.neighborhood}</Text>
             <View style={styles.LocationRatingContainer}>
-              <MaterialCommunityIcons name="star-box" size={20} color="#f2c94c" style={styles.LocationReviewIcon} />
-              <Text style={styles.LocationRating}>{AverageRating(item.rating)}</Text>
+              <MaterialCommunityIcons
+                name="star-box"
+                size={20}
+                color="#f2c94c"
+                style={styles.LocationReviewIcon}
+              />
+              <Text style={styles.LocationRating}>
+                {AverageRating(item.rating)}
+              </Text>
             </View>
           </TouchableOpacity>
-        )}/>
+        )}
+      />
     </View>
   );
-}
+};
 
 //add styles for item.Name, item.neighborhood, item.rating
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -65,27 +68,23 @@ const styles = StyleSheet.create({
   LocationTitle: {
     fontSize: 20,
     fontWeight: 'bold',
-
   },
   LocationNeighborhood: {
     fontSize: 16,
-    fontWeight: 'normal'
-    ,
+    fontWeight: 'normal',
   },
-  LocationRatingContainer:{
+  LocationRatingContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-
   },
   LocationRating: {
     fontSize: 14,
     fontWeight: 'normal',
-    textDecorationStyle: "dashed"
-    
+    textDecorationStyle: 'dashed',
   },
-  LocationReviewIcon:{
+  LocationReviewIcon: {
     marginRight: 5,
-  }
+  },
 });
 
 export default HomeScreen;
