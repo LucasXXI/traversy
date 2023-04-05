@@ -1,4 +1,6 @@
-export const locationsSource: Location[] = [
+type LocationWithoutFavorite = Omit<Location, 'isFavorite'>;
+
+export const locationsSource: LocationWithoutFavorite[] = [
   {
     id: 1,
     name: 'Basílica de Nazaré',

@@ -20,7 +20,7 @@ const LocationItem = ({
     <List.Item
       onPress={() => onLocationPress(location.id)}
       title={location.name}
-      description={location.description}
+      description={location.neighborhood}
       left={(props) => (
         <Avatar.Image
           {...props}
