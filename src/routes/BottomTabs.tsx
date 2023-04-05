@@ -1,31 +1,52 @@
+/* eslint-disable react/no-unstable-nested-components */
 import 'react-native-gesture-handler';
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { NavigatorScreenParams } from '@react-navigation/native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import StackRoutes from './Stack';
-import FavoritesScreen from '../screens/FavoritesScreen';
+import HomeStackRoutes, { HomeStackParamList } from './HomeStack';
+import FavoriteStackRoutes, { FavoriteStackParamList } from './FavoriteStack';
 
 export type BottomTabParamList = {
-  Home: undefined;
-  Favorites: undefined;
+  HomeStack: NavigatorScreenParams<HomeStackParamList>;
+  FavoriteStack: NavigatorScreenParams<FavoriteStackParamList>;
 };
 
-const tabIcons = {
-  Catalog: 'book',
-  Favorites: 'star',
-}
-
-const { Navigator, Screen } = createBottomTabNavigator<BottomTabParamList>();
+const { Navigator, Screen } =
+  createMaterialBottomTabNavigator<BottomTabParamList>();
 
 const BottomTabRoutes = () => {
   return (
-    <Navigator initialRouteName="Home">
+    <Navigator initialRouteName="HomeStack">
       <Screen
-        name="Home"
-        component={StackRoutes}
-        options={{ headerShown: false }}
+        name="HomeStack"
+        component={HomeStackRoutes}
+        options={{
+          tabBarLabel: 'Inicio',
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? 'home' : 'home-outline'}
+              color={color}
+              size={26}
+            />
+          ),
+        }}
       />
-      <Screen name="Favorites" component={FavoritesScreen} />
+      <Screen
+        name="FavoriteStack"
+        component={FavoriteStackRoutes}
+        options={{
+          tabBarLabel: 'Favoritos',
+          tabBarIcon: ({ color, focused }) => (
+            <MaterialCommunityIcons
+              name={focused ? 'heart' : 'heart-outline'}
+              color={color}
+              size={26}
+            />
+          ),
+        }}
+      />
     </Navigator>
   );
 };

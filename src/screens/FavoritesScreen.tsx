@@ -1,18 +1,29 @@
 import React from 'react';
-import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { BottomTabParamList } from '../routes/BottomTabs';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Button } from 'react-native-paper';
+import { FavoriteStackParamList } from '../routes/FavoriteStack';
 
-type FavoritesScreenProps = BottomTabScreenProps<
-  BottomTabParamList,
-  'Favorites'
+type FavoritesScreenProps = NativeStackScreenProps<
+  FavoriteStackParamList,
+  'Favorite'
 >;
 
 const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Favorites Screen</Text>
+      <Button
+        onPress={() =>
+          navigation.navigate('Location', {
+            location: { id: 1, description: '', image: '', title: '' },
+            isFavorite: true,
+          })
+        }
+      >
+        Go to Home Screen
+      </Button>
     </View>
   );
 };

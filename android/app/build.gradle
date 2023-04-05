@@ -6,7 +6,7 @@ import com.android.build.OutputFile
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 
 project.ext.vectoricons = [
-    iconFontNames: ['Feather.ttf', 'FontAwesome.ttf' ] 
+    iconFontNames: ['Feather.ttf', 'FontAwesome.ttf', 'MaterialIcons.ttf', 'MaterialCommunityIcons.ttf' ] 
 ]
 
 

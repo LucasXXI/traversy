@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { View, Text, StyleSheet, Button } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
-import { RootStackParamList } from '../routes/Stack';
+import { FavoriteStackParamList } from '../routes/FavoriteStack';
+import { HomeStackParamList } from '../routes/HomeStack';
 
 type LocationScreenProps = NativeStackScreenProps<
-  RootStackParamList,
+  HomeStackParamList | FavoriteStackParamList,
   'Location'
 >;
 

@@ -1,4 +1,5 @@
 import React, { createContext, useMemo, useState, useContext } from 'react';
+import { useColorScheme } from 'react-native';
 import { CombinedDarkTheme, CombinedLightTheme } from '../theme';
 
 type Theme = 'light' | 'dark';
@@ -20,7 +21,11 @@ export const PreferencesProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [theme, setTheme] = useState<Theme>('light');
+  const colorScheme = useColorScheme();
+  const [theme, setTheme] = useState<Theme>(
+    colorScheme === 'dark' ? 'dark' : 'light'
+  );
+
   const themeComponent = useMemo(
     () => (theme === 'light' ? CombinedLightTheme : CombinedDarkTheme),
     [theme]

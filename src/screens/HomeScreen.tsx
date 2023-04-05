@@ -2,9 +2,9 @@ import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
-import { RootStackParamList } from '../routes/Stack';
+import { HomeStackParamList } from '../routes/HomeStack';
 
-type HomeScreenProps = NativeStackScreenProps<RootStackParamList, 'Home'>;
+type HomeScreenProps = NativeStackScreenProps<HomeStackParamList, 'Home'>;
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
   return (
