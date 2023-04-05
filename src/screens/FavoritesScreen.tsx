@@ -1,9 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useMemo } from 'react';
+import { StyleSheet, View } from 'react-native';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Button } from 'react-native-paper';
+import LocationList from '../components/LocationList';
 import { FavoriteStackParamList } from '../routes/FavoriteStack';
+import { useLocations } from '../stores/locations';
 
 type FavoritesScreenProps = NativeStackScreenProps<
   FavoriteStackParamList,
@@ -11,33 +12,34 @@ type FavoritesScreenProps = NativeStackScreenProps<
 >;
 
 const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
+  const { locations, toggleFavorite } = useLocations();
+
+  const favoriteLocations = useMemo(
+    () => locations.filter((l) => l.isFavorite),
+    [locations]
+  );
+
+  const handleLocationPress = (locationId: number) => {
+    const location = favoriteLocations.find((l) => l.id === locationId);
+
+    if (location) {
+      navigation.navigate('Location', { location });
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Favorites Screen</Text>
-      <Button
-        onPress={() =>
-          navigation.navigate('Location', {
-            location: { id: 1, description: '', image: '', title: '' },
-            isFavorite: true,
-          })
-        }
-      >
-        Go to Home Screen
-      </Button>
+      <LocationList
+        values={favoriteLocations}
+        onLocationPress={handleLocationPress}
+        onToggleFavorite={toggleFavorite}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
+  container: {},
 });
 
 export default FavoritesScreen;

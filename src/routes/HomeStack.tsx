@@ -9,7 +9,6 @@ import LocationScreen from '../screens/LocationScreen';
 
 type LocationParams = {
   location: Location;
-  isFavorite: boolean;
 };
 
 export type HomeStackParamList = {

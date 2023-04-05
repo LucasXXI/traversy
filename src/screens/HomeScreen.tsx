@@ -4,16 +4,18 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StyleSheet, View } from 'react-native';
 import { Chip, Portal, Text } from 'react-native-paper';
 
-import { locations } from '../assets/locations';
 import FilterDialog from '../components/FilterDialog';
+import LocationList from '../components/LocationList';
 import { HomeStackParamList } from '../routes/HomeStack';
+import { useLocations } from '../stores/locations';
 
 type HomeScreenProps = NativeStackScreenProps<HomeStackParamList, 'Home'>;
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
+  const { locations, toggleFavorite } = useLocations();
+
   const [activitiesDialogOpen, setActivitiesDialogOpen] = useState(false);
   const [neighborhoodsDialogOpen, setNeighborhoodsDialogOpen] = useState(false);
-
   const [selectedActivities, setSelectedActivities] = useState<string[]>([]);
   const [selectedNeighborhoods, setSelectedNeighborhoods] = useState<string[]>(
     []
@@ -31,7 +33,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       .flat()
       .sort()
       .filter((activity, index, self) => self.indexOf(activity) === index);
-  }, [selectedNeighborhoods]);
+  }, [locations, selectedNeighborhoods]);
 
   const locationsNeighborhoods = useMemo(() => {
     const filteredLocations = selectedActivities.length
@@ -48,7 +50,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       .filter(
         (neighborhood, index, self) => self.indexOf(neighborhood) === index
       );
-  }, [selectedActivities]);
+  }, [locations, selectedActivities]);
 
   const filteredLocations = useMemo(
     () =>
@@ -65,7 +67,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 
         return hasSelectedActivities && hasSelectedNeighborhoods;
       }),
-    [selectedActivities, selectedNeighborhoods]
+    [locations, selectedActivities, selectedNeighborhoods]
   );
 
   const applyActivitiesFilter = (values: string[]) => {
@@ -78,10 +80,13 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     setNeighborhoodsDialogOpen(false);
   };
 
-  console.log(
-    'filteredLocations',
-    filteredLocations.map((location) => location.name)
-  );
+  const handleLocationPress = (locationId: number) => {
+    const location = locations.find((l) => l.id === locationId);
+
+    if (location) {
+      navigation.navigate('Location', { location });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -120,15 +125,17 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           />
         </Portal>
       </View>
+      <LocationList
+        values={filteredLocations}
+        onLocationPress={handleLocationPress}
+        onToggleFavorite={toggleFavorite}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 12,
-    paddingVertical: 18,
-  },
+  container: {},
   filters: {
     flexDirection: 'column',
     gap: 8,

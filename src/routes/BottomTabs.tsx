@@ -40,7 +40,7 @@ const BottomTabRoutes = () => {
           tabBarLabel: 'Favoritos',
           tabBarIcon: ({ color, focused }) => (
             <MaterialCommunityIcons
-              name={focused ? 'heart' : 'heart-outline'}
+              name={focused ? 'star' : 'star-outline'}
               color={color}
               size={26}
             />
