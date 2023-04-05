@@ -73,6 +73,78 @@ export const locations: Location[] = [
     address: 'Ilha do Combu, Belém - PA',
     rating: [4.6, 4.8, 4.7, 4.6, 4.8],
     neighborhood: 'Ilha do Combu',
-    activities: ['Praias', 'Passeio de barco', 'Degustação de Açaí'],
+    activities: ['Praias', 'Passeio de barco', 'Degustação de açaí'],
+  },
+  {
+    id: 6,
+    name: 'Parque Zoobotânico do Museu Paraense Emílio Goeldi',
+    description:
+      'O Parque Zoobotânico é uma unidade de conservação do Museu Paraense Emílio Goeldi, que abriga uma ampla variedade de espécies de animais e plantas da Amazônia. O local também conta com um centro de pesquisas científicas e programas de educação ambiental.',
+    imageUrl:
+      'https://www.turismoparaense.com/wp-content/uploads/2018/11/Em%C3%ADlio-Goeldi-1.jpg',
+    price: 5,
+    openingHours: 'Aberto de terça a domingo, das 9h às 16h30',
+    address: 'Av. Magalhães Barata, 376 - São Brás, Belém - PA, 66040-170',
+    rating: [4.7, 4.6, 4.8, 4.5, 4.7],
+    neighborhood: 'São Brás',
+    activities: ['Observação de animais', 'Trilhas', 'Programas educacionais'],
+  },
+  {
+    id: 7,
+    name: 'Museu da Imagem e do Som do Pará',
+    description:
+      'O Museu da Imagem e do Som do Pará é um espaço dedicado à preservação, pesquisa e difusão do acervo audiovisual e fotográfico paraense. O museu conta com exposições permanentes e temporárias, além de exibições de filmes e eventos culturais.',
+    imageUrl:
+      'https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Mispa3.jpg/1280px-Mispa3.jpg',
+    price: 5,
+    openingHours:
+      'Aberto de terça a sexta, das 10h às 16h; sábados, das 10h às 14h',
+    address: 'Av. Governador José Malcher, 289 - Nazaré, Belém - PA, 66040-285',
+    rating: [4.5, 4.3, 4.7, 4.6, 4.5],
+    neighborhood: 'Nazaré',
+    activities: ['Exposições', 'Exibições de filmes', 'Eventos culturais'],
+  },
+  {
+    id: 8,
+    name: 'Catedral Metropolitana de Belém',
+    description:
+      'A Catedral Metropolitana de Belém, também conhecida como Basílica de Nossa Senhora de Nazaré, é uma das principais igrejas católicas da cidade. Sua arquitetura neoclássica é imponente e inspiradora, e o interior é rico em detalhes e obras de arte sacra.',
+    imageUrl:
+      'https://www.turismoparaense.com/wp-content/uploads/2019/04/igreja-da-se-catedral-metropolitana-2-830x467.jpg',
+    price: 0,
+    openingHours: 'Aberta diariamente, das 7h às 19h',
+    address: 'Praça Dom Pedro II, S/N - Cidade Velha, Belém - PA, 66020-330',
+    rating: [4.6, 4.7, 4.5, 4.8, 4.6],
+    neighborhood: 'Cidade Velha',
+    activities: ['Visitação', 'Celebrações religiosas'],
+  },
+  {
+    id: 9,
+    name: 'Ilha de Cotijuba',
+    description:
+      'A Ilha de Cotijuba é uma das maiores ilhas do arquipélago de Belém, localizada a cerca de 2 horas de barco da cidade. O local é conhecido por suas belas praias, natureza preservada e ambiente tranquilo. É um destino ideal para quem quer relaxar e aproveitar a natureza.',
+    imageUrl:
+      'https://www.guiaviagensbrasil.com/blog/wp-content/uploads/2020/02/cotijuba-ilha-belem.jpg',
+    price: 60,
+    openingHours:
+      'A ilha pode ser visitada a qualquer hora, mas é recomendado ir durante o dia.',
+    address: 'Ilha de Cotijuba, Belém - PA',
+    rating: [4.7, 4.8, 4.5, 4.6, 4.9],
+    neighborhood: 'Ilha de Cotijuba',
+    activities: ['Praias', 'Caminhadas', 'Banho de rio'],
+  },
+  {
+    id: 10,
+    name: 'Museu do Círio',
+    description:
+      'O Museu do Círio é um espaço dedicado à preservação da cultura e da história da maior festa religiosa do Norte do Brasil, o Círio de Nazaré. O local conta com um acervo de peças históricas, objetos de devoção e documentos que contam a história da festa. Além disso, o museu também promove exposições temporárias e atividades culturais.',
+    imageUrl:
+      'https://www.turismo.pa.gov.br/wp-content/uploads/2021/06/7-1024x576.jpg',
+    price: 10,
+    openingHours: 'De terça-feira a sábado, das 10h às 16h',
+    address: 'Av. Magalhães Barata, 1.158 - São Brás, Belém - PA, 66060-281',
+    rating: [4.4, 4.5, 4.2, 4.6, 4.3],
+    neighborhood: 'São Brás',
+    activities: ['Visitação', 'Exposições temporárias', 'Atividades culturais'],
   },
 ];
