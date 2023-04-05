@@ -35,7 +35,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
       .filter((activity, index, self) => self.indexOf(activity) === index);
   }, [locations, selectedNeighborhoods]);
 
-  const locationsNeighborhoods = useMemo(() => {
+  const neighborhoods = useMemo(() => {
     const filteredLocations = selectedActivities.length
       ? locations.filter((location) =>
           location.activities.some((activity) =>
@@ -118,7 +118,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
           />
           <FilterDialog
             title="Bairro"
-            values={locationsNeighborhoods}
+            values={neighborhoods}
             visible={neighborhoodsDialogOpen}
             onDismiss={() => setNeighborhoodsDialogOpen(false)}
             onApply={applyNeighborhoodsFilter}
@@ -135,10 +135,13 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flex: 1,
+  },
   filters: {
     flexDirection: 'column',
     gap: 8,
+    margin: 16,
   },
   chips: {
     flexDirection: 'row',
