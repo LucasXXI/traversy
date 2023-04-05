@@ -1,4 +1,4 @@
-export const locations: Location[] = [
+export const locationsSource: Location[] = [
   {
     id: 1,
     name: 'Basílica de Nazaré',

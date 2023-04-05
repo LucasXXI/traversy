@@ -9,4 +9,5 @@ type Location = {
   rating: number[];
   neighborhood: string;
   activities: string[];
+  isFavorite: boolean;
 };
