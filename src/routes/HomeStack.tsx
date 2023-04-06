@@ -8,7 +8,8 @@ import HomeScreen from '../screens/HomeScreen';
 import LocationScreen from '../screens/LocationScreen';
 
 type LocationParams = {
-  location: Location;
+  //locationId: Location;
+  locationId: number;
 };
 
 export type HomeStackParamList = {

@@ -81,11 +81,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
   };
 
   const handleLocationPress = (locationId: number) => {
-    const location = locations.find((l) => l.id === locationId);
-
-    if (location) {
-      navigation.navigate('Location', { location });
-    }
+    navigation.navigate('Location', { locationId });
   };
 
   return (

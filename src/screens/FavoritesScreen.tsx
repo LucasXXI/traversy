@@ -22,11 +22,7 @@ const FavoritesScreen = ({ navigation }: FavoritesScreenProps) => {
   );
 
   const handleLocationPress = (locationId: number) => {
-    const location = favoriteLocations.find((l) => l.id === locationId);
-
-    if (location) {
-      navigation.navigate('Location', { location });
-    }
+    navigation.navigate('Location', { locationId });
   };
 
   return (

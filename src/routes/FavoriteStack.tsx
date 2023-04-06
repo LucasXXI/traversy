@@ -8,7 +8,7 @@ import NavigationBar from '../components/NavigationBar';
 import LocationScreen from '../screens/LocationScreen';
 
 type LocationParams = {
-  location: Location;
+  locationId: number;
 };
 
 export type FavoriteStackParamList = {
