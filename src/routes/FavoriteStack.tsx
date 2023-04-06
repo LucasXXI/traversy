@@ -3,8 +3,8 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import FavoritesScreen from '../screens/FavoritesScreen';
 import NavigationBar from '../components/NavigationBar';
+import FavoritesScreen from '../screens/FavoritesScreen';
 import LocationScreen from '../screens/LocationScreen';
 
 type LocationParams = {

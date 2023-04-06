@@ -8,7 +8,6 @@ import HomeScreen from '../screens/HomeScreen';
 import LocationScreen from '../screens/LocationScreen';
 
 type LocationParams = {
-  //locationId: Location;
   locationId: number;
 };
 

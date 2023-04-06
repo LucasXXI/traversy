@@ -1,6 +1,6 @@
+import React from 'react';
 import { getHeaderTitle } from '@react-navigation/elements';
 import { NativeStackHeaderProps } from '@react-navigation/native-stack';
-import React from 'react';
 import { Appbar } from 'react-native-paper';
 
 import { usePreferences } from '../stores/preferences';

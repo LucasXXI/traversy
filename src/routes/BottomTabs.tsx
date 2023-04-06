@@ -5,8 +5,8 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { NavigatorScreenParams } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import HomeStackRoutes, { HomeStackParamList } from './HomeStack';
 import FavoriteStackRoutes, { FavoriteStackParamList } from './FavoriteStack';
+import HomeStackRoutes, { HomeStackParamList } from './HomeStack';
 
 export type BottomTabParamList = {
   HomeStack: NavigatorScreenParams<HomeStackParamList>;
