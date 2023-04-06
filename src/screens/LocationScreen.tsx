@@ -1,8 +1,7 @@
-import React, { useState, useMemo } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useMemo } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Button, StyleSheet, View, Image } from 'react-native';
-import { Text, IconButton, Surface, Card, Chip } from 'react-native-paper';
+import { Image, StyleSheet, View } from 'react-native';
+import { Card, Chip, IconButton, Surface, Text } from 'react-native-paper';
 
 import { FavoriteStackParamList } from '../routes/FavoriteStack';
 import { HomeStackParamList } from '../routes/HomeStack';
@@ -13,25 +12,30 @@ type LocationScreenProps = NativeStackScreenProps<
   'Location'
 >;
 
-//create a component that renders the Locations information from Locations.tsx file
 const LocationScreen = ({ route }: LocationScreenProps) => {
   const { locationId } = route.params;
   const { toggleFavorite, locations } = useLocations();
 
   const location = useMemo(
-    () => locations.find((location) => location.id === locationId)!,
-    [locations]
+    () => locations.find((l) => l.id === locationId)!,
+    [locationId, locations]
   );
 
-  const AvgRating = (rating: Array<number>) => {
+  const averageRating = (rating: number[]) => {
     const avg = rating.reduce((a, b) => a + b, 0) / location.rating.length;
     return avg.toFixed(1);
   };
 
-  //render the location information
+  const convertCurrency = (price: number) => {
+    return price.toLocaleString('pt-BR', {
+      style: 'currency',
+      currency: 'BRL',
+    });
+  };
+
   return (
-    <>
-      <View>
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
         <Image source={{ uri: location.imageUrl }} style={styles.image} />
         <Surface mode="flat" style={styles.surface}>
           <IconButton
@@ -39,84 +43,94 @@ const LocationScreen = ({ route }: LocationScreenProps) => {
             onPress={() => toggleFavorite(location.id)}
             size={36}
             mode="contained"
+            style={styles.favoriteButton}
           />
         </Surface>
       </View>
-      <View style={styles.container}>
-        <Text variant="titleLarge" style={{ marginBottom: 10 }}>
+      <View style={styles.contentContainer}>
+        <Text variant="titleLarge" style={styles.title}>
           {location.name}
         </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Chip
-            mode="flat"
-            style={{ marginBottom: 10, width: '25%', marginRight: 5 }}
-            textStyle={{ textAlign: 'center' }}
-            icon={'cash'}
-            compact={true}
-          >
-            {location.price == 0
+        <View style={styles.infoContainer}>
+          <Chip mode="flat" icon="cash">
+            {location.price === 0
               ? 'Gratuito'
-              : `R$${location.price.toFixed(1)}`}
+              : convertCurrency(location.price)}
           </Chip>
-          <Chip
-            mode="outlined"
-            style={{ marginBottom: 10, width: '25%', justifyContent: 'center' }}
-            textStyle={{ textAlign: 'center' }}
-            icon={'star-box'}
-            compact={true}
-          >
-            {AvgRating(location.rating)}
+          <Chip mode="flat" icon="star-box">
+            {averageRating(location.rating)}
           </Chip>
         </View>
-        <Chip
-          mode="outlined"
-          style={{ marginBottom: 10, width: '100%', justifyContent: 'center'}}
-          textStyle={{ textAlign: 'left' }}
-          icon={'clock'}
-          compact={true}
-        >
-          {location.openingHours}
-        </Chip>
-        <Card mode="contained">
+        <View style={styles.openingHours}>
+          <Text variant="labelLarge">Horários</Text>
+          {location.openingHours.map((openingHour, index) => (
+            <View key={index} style={styles.chipContainer}>
+              <Chip mode="outlined" icon="clock">
+                {openingHour}
+              </Chip>
+            </View>
+          ))}
+        </View>
+        <Card style={styles.description} mode="contained">
           <Card.Content>
-            <Text style={{textAlign: 'justify'}}>{location.description}</Text>
+            <Text variant="bodyMedium">{location.description}</Text>
           </Card.Content>
         </Card>
       </View>
-    </>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 15,
-    margin: 'auto',
+  },
+  imageContainer: {},
+  contentContainer: {
     padding: 16,
   },
-
   title: {
-    textAlign: 'left',
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    marginTop: 4,
+    marginBottom: 12,
+    width: '80%',
   },
-
   image: {
-    width: '100%',
-    height: 200,
+    height: 240,
     position: 'relative',
   },
   surface: {
-    position: 'absolute',
-    right: 16,
-    bottom: 0,
-    width: 52,
-    borderRadius: 999,
-    height: 52,
     justifyContent: 'center',
     alignItems: 'center',
+    position: 'absolute',
+    width: 52,
+    height: 52,
+    borderRadius: 999,
+    bottom: 0,
+    right: 16,
     marginBottom: -26,
+  },
+  favoriteButton: {
+    zIndex: 10,
+  },
+  infoContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    justifyContent: 'flex-start',
+  },
+  openingHours: {
+    marginTop: 24,
+    gap: 8,
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+  },
+  chipContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-start',
+  },
+  description: {
+    marginTop: 16,
   },
 });
 
