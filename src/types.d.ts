@@ -4,7 +4,7 @@ type Location = {
   description: string;
   imageUrl: string;
   price: number;
-  openingHours: string;
+  openingHours: string[];
   address: string;
   rating: number[];
   neighborhood: string;
