@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Image, StyleSheet, View } from 'react-native';
-import { Card, Chip, IconButton, Surface, Text } from 'react-native-paper';
+import { Chip, IconButton, Surface, Text } from 'react-native-paper';
 
+import { ScrollView } from 'react-native-gesture-handler';
 import { FavoriteStackParamList } from '../routes/FavoriteStack';
 import { HomeStackParamList } from '../routes/HomeStack';
 import { useLocations } from '../stores/locations';
@@ -34,7 +35,7 @@ const LocationScreen = ({ route }: LocationScreenProps) => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: location.imageUrl }} style={styles.image} />
         <Surface mode="flat" style={styles.surface}>
@@ -51,7 +52,7 @@ const LocationScreen = ({ route }: LocationScreenProps) => {
         <Text variant="titleLarge" style={styles.title}>
           {location.name}
         </Text>
-        <View style={styles.infoContainer}>
+        <View style={styles.priceAndRatingContainer}>
           <Chip mode="flat" icon="cash">
             {location.price === 0
               ? 'Gratuito'
@@ -61,23 +62,26 @@ const LocationScreen = ({ route }: LocationScreenProps) => {
             {averageRating(location.rating)}
           </Chip>
         </View>
-        <View style={styles.openingHours}>
+        <View style={styles.openingHoursContainer}>
           <Text variant="labelLarge">Horários</Text>
           {location.openingHours.map((openingHour, index) => (
-            <View key={index} style={styles.chipContainer}>
+            <View key={index} style={styles.openingHoursChipContainer}>
               <Chip mode="outlined" icon="clock">
                 {openingHour}
               </Chip>
             </View>
           ))}
         </View>
-        <Card style={styles.description} mode="contained">
-          <Card.Content>
-            <Text variant="bodyMedium">{location.description}</Text>
-          </Card.Content>
-        </Card>
+        <View style={styles.addressContainer}>
+          <Text variant="labelLarge">Endereço</Text>
+          <Text variant="bodyMedium">{location.address}</Text>
+        </View>
+        <View style={styles.descriptionContainer}>
+          <Text variant="labelLarge">Descrição</Text>
+          <Text variant="bodyMedium">{location.description}</Text>
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -112,25 +116,32 @@ const styles = StyleSheet.create({
   favoriteButton: {
     zIndex: 10,
   },
-  infoContainer: {
+  priceAndRatingContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 8,
     justifyContent: 'flex-start',
   },
-  openingHours: {
+  openingHoursContainer: {
     marginTop: 24,
     gap: 8,
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
   },
-  chipContainer: {
+  addressContainer: {
+    marginTop: 16,
+    gap: 8,
+    justifyContent: 'flex-start',
+  },
+  openingHoursChipContainer: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'flex-start',
   },
-  description: {
+  descriptionContainer: {
     marginTop: 16,
+    gap: 8,
+    justifyContent: 'flex-start',
   },
 });
 
